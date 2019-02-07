@@ -1,13 +1,17 @@
+<% if flash[:danger] %><div class="alert alert-danger" role="alert">
+<p><%= flash[:danger] %></p>
+
+<% end %>
 
 
-<%= form_tag url_for(action: 'create'), method: "post" do %>
+<%= form_tag url_for(action: 'create'), method: "get" do %>
 
   <%= label_tag 'email' %>
   <%= text_field_tag 'email', @user %>
   <br /> <br />
 
   <%= label_tag 'password' %>
-  <%= text_area_tag 'password', @user %>
+  <%= password_field_tag 'password', @user %>
   <br /> <br />
 
   <%= submit_tag 'Create Session' %>

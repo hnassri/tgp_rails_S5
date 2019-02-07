@@ -1,7 +1,5 @@
 <html>
   <body>
-
-  
   <% if @post.errors.any? %><div class="alert alert-danger" role="alert">
   <p>Nous n''avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :
   <ul>
@@ -20,7 +18,6 @@
       <div class= "card-body">
       <label for="title" class="card-title text-center">Title</label>
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-      <input name="author" type="hidden" value="1">
       <input id="title" name="title" type="text" value="<%= @post.title %>"/>
       <br /> <br />
       
@@ -36,13 +33,5 @@
     </form>
     </div>
     </div>
-
-    <%= form_tag url_for(action: 'create'), method: "post" do %>
-      <%= select_tag name: "tag","<option>hey</option>".html_safe %>
-      <%= submit_tag 'Create Gossip' %>
-    
-    <% end %>
-
-    <!-- ... -->
   </body>
 </html>

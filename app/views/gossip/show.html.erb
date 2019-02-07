@@ -8,10 +8,10 @@
     <li>date de création: <%=@gossip_id.created_at%></li>
     <li>Ville de l auteur : <%= link_to @gossip_id.user.city.name, city_path(@gossip_id.user.city.id) %></li>
     <li>l&rsquo;auteur: <%= link_to @gossip_id.user.first_name, gossip_user_path(@gossip_id.user.id) %></a></li>
-    <li>     <%= link_to 'Destroy', gossip_path(@gossip_id.id),
+   <% if session[:user_id] == @gossip_id.user.id %> <li>     <%= link_to 'Destroy', gossip_path(@gossip_id.id),
     method: :delete,
     data: { confirm: 'Are you sure?' } %></li>
-    <li><%= link_to 'Edit le potin', edit_gossip_path(@gossip_id) %></li>
+    <li><%= link_to 'Edit le potin', edit_gossip_path(@gossip_id) %></li><% end %>
   </ul>
 </div>
 
@@ -32,10 +32,10 @@
       <div class="card-body">
         <h5 class="card-title text-center">Par <%= comment.user.first_name   %></h5>
         <p class="card-text text-center"><%= comment.content %></a></p>
-        <p class="card-text text-center"><%= link_to 'Modifier le commentaire', edit_gossip_comment_path(@gossip_id.id, comment.id) %></p>
+       <% if session[:user_id] == comment.user.id %> <p class="card-text text-center"><%= link_to 'Modifier le commentaire', edit_gossip_comment_path(@gossip_id.id, comment.id) %></p>
         <p class="card-text text-center"><%= link_to 'Destroy', gossip_comment_path(@gossip_id.id,comment.id),
         method: :delete,
-        data: { confirm: 'Are you sure?' } %></p>
+        data: { confirm: 'Are you sure?' } %></p><% end %>
       </div>
     </div>
   </div>

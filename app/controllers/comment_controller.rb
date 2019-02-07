@@ -1,18 +1,19 @@
 class CommentController < ApplicationController
   
   protect_from_forgery with: :exception
-
+  before_action :authenticate_user, only: [:new, :edit]
   def show
     @comment = Comment.find(params[:id])
   end
   def new
-    @po = Comment.new
+    @pos = Comment.new(user_id: session[:user_id])
+
   end
 
   def create
-    @po = Comment.new(content: params[:content],gossip_id: params[:gossip_id],user_id: 11)
-    if @po.save
-      gossip = @po.gossip_id
+    @pos = Comment.new(content: params[:content],gossip_id: params[:gossip_id])
+    if @pos.save
+      gossip = @pos.gossip_id
       redirect_to gossip_path(gossip)
     else
       render 'edit'
@@ -39,5 +40,14 @@ class CommentController < ApplicationController
 
 
     redirect_to gossip_path(params[:gossip_id])
+  end
+
+  private
+
+  def authenticate_user
+    unless current_user
+      flash[:danger] = "Please log in."
+      redirect_to new_session_path
+    end
   end
 end

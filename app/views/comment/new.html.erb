@@ -1,10 +1,14 @@
-<% if @po.errors.any? %><div class="alert alert-danger" role="alert">
+<% if @pos.errors.any? %><div class="alert alert-danger" role="alert">
 <p>Nous n&rsquo;avons pas réussi à créer le commentaire pour la (ou les) raison(s) suivante(s) :
 <ul>
-  <% @po.errors.full_messages.each do |message| %>
+  <% @pos.errors.full_messages.each do |message| %>
     <li><%= message %></li>
   <% end %>  
 </ul></p></div>
+
+<% end %>
+<% if flash[:danger] %><div class="alert alert-danger" role="alert">
+<p><%= flash[:danger] %>
 
 <% end %>
 
@@ -13,7 +17,7 @@
   
 
   <%= label_tag 'Body' %>
-  <%= text_area_tag 'content', @po.content %>
+  <%= text_area_tag 'content', @pos.content %>
   <br /> <br />
 
   <%= submit_tag 'Update Comment' %>

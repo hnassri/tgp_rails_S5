@@ -1,7 +1,7 @@
 class GossipController < ApplicationController
 
   protect_from_forgery with: :exception
-
+  before_action :authenticate_user, only: [:new, :edit, :show]
   def show
     @gossip_id = Gossip.find(params[:id])
   end
@@ -12,7 +12,7 @@ class GossipController < ApplicationController
 
   def create
 
-     @post = Gossip.new(title: params[:title],content: params[:content], user_id: params[:author].to_i)
+     @post = Gossip.new(title: params[:title],content: params[:content], user_id: session[:user_id])
     if @post.save
       flash[:success] = "Bravo, vous avez créé un potin"
       redirect_to '/home'
@@ -43,4 +43,13 @@ class GossipController < ApplicationController
     redirect_to gossip_index_path
   end
 
+
+  private
+
+  def authenticate_user
+    unless current_user
+      flash[:danger] = "Please log in."
+      redirect_to new_session_path
+    end
+  end
 end
