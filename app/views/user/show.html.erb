@@ -1,0 +1,13 @@
+<div class="m-2">
+  <h1 class="text-center">Bienvenue sur la page de <%=@author.first_name%></h1>
+  </br>
+  <h4>Informations personnelles :</h4>
+  <ul>
+    <li>Prénom: <%=@author.first_name%> </li>
+    <li>Nom: <%=@author.last_name%> </li>
+    <li>Âge: <%=@author.age%> </li>
+    <li>E-mail: <%=@author.email%> </li>
+    <li>Description: <%=@author.description%> </li>
+    <li>Ville de l&rsquo;auteur : <%= link_to @author.city.name, city_path(@author.city.id) %></li>
+  </ul>
+</div>

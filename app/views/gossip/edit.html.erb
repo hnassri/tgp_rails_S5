@@ -1,0 +1,28 @@
+
+  <% if @up.errors.any? %><div class="alert alert-danger" role="alert">
+  <p>Nous n&rsquo;avons pas réussi à modifier le potin pour la (ou les) raison(s) suivante(s) :
+  <ul>
+    <% @up.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>  
+  </ul></p></div>
+
+<% end %>
+
+
+
+
+
+<%= form_tag url_for(action: 'update'), method: "patch" do %>
+
+  <%= label_tag 'Title' %>
+  <%= text_field_tag 'title', @up.title %>
+  <br /> <br />
+
+  <%= label_tag 'Body' %>
+  <%= text_area_tag 'content', @up.content %>
+  <br /> <br />
+
+  <%= submit_tag 'Update Gossip' %>
+
+<% end %>

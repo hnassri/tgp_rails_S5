@@ -1,0 +1,19 @@
+<% if @pos.errors.any? %><div class="alert alert-danger" role="alert">
+<p>Nous n&rsquo;avons pas réussi à modifier le commentaire pour la (ou les) raison(s) suivante(s) :
+<ul>
+  <% @pos.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>  
+</ul></p></div>
+
+<% end %>
+
+<%= form_tag url_for(action: 'update'), method: "patch" do %>
+
+  <%= label_tag 'Body' %>
+  <%= text_area_tag 'content', @pos.content %>
+  <br /> <br />
+
+  <%= submit_tag 'Update Comment' %>
+
+<% end %>

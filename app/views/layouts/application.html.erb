@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TheGossipProject</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    
+  </head>
+
+  <body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Gossip Town</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <span class="nav-link"><%= link_to "Home", home_path %></span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link"><%= link_to "Team", team_path %></span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link"><%= link_to "Contact", contact_path%></span>
+      </li>
+      <% if current_user %>
+        <li class="nav-item"><span class="nav-link"><%= link_to "Se déconnecter", session_path(session[:user_id]), method: :delete %></span></li>
+      <% else %>
+        <li class="nav-item"><span class="nav-link"><%= link_to "Se connecter", new_session_path %></span><li>
+        <li class="nav-item"><span class="nav-link"><%= link_to "S'inscrire" , new_user_path %></span></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+<% if flash[:success] %>
+<div class="alert alert-success" role="alert">
+<%= flash[:success] %> </div>
+<% end %></br>
+<% if flash[:notice] %>
+<div class="alert alert-success" role="alert">
+<%= flash[:notice] %> </div>
+<% end %></br>
+<% if flash[:note] %>
+<div class="alert alert-success" role="alert">
+<%= flash[:note] %> </div>
+<% end %></br>
+
+<%= yield %>
+  </body>
+</html>

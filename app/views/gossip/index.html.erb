@@ -1,0 +1,21 @@
+<div class="container">
+  </br>
+  <h1 class="text-center">Bienvenue <% if current_user %><%= User.find_by(id: session[:user_id]).first_name %><% end %></h1>
+  </br>
+  <h3 class="text-center">Voici la listes des potins:</h3>
+  </br>
+  <div class="row justify-content-around">
+  <%Gossip.all.each do |gossip| %>
+    <div class="col-sm-3 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center"><%=    gossip.user.first_name %></h5>
+          <p class="card-text text-center"><a href="gossip/<%= gossip.id %>"><%= gossip.title%></a></p>
+          <p class="card-text text-center"><%= gossip.comments.all.length %><p>
+        </div>
+      </div>
+    </div>
+  <% end%>
+    </div>
+</div>
+   

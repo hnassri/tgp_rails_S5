@@ -1,0 +1,21 @@
+<% if @po.errors.any? %><div class="alert alert-danger" role="alert">
+<p>Nous n&rsquo;avons pas réussi à créer le commentaire pour la (ou les) raison(s) suivante(s) :
+<ul>
+  <% @po.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>  
+</ul></p></div>
+
+<% end %>
+
+<%= form_tag url_for(action: 'create'), method: "post" do %>
+
+  
+
+  <%= label_tag 'Body' %>
+  <%= text_area_tag 'content', @po.content %>
+  <br /> <br />
+
+  <%= submit_tag 'Update Comment' %>
+
+<% end %>

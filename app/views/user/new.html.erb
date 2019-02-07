@@ -1,0 +1,44 @@
+<% if flash.now[:danger] %><div class="alert alert-danger" role="alert">
+<p><%= flash.now[:danger]%>
+<ul>
+  <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>  
+  <% @user = "" %>
+</ul></p></div>
+
+<% end %>
+
+<%= form_tag url_for(action: 'create'), method: "post" do %>
+
+  <%= label_tag 'email' %>
+  <%= text_field_tag 'email', @user %>
+  <br /> <br />
+
+  <%= label_tag 'first_name' %>
+  <%= text_field_tag 'first_name', @user %>
+  <br /> <br />
+
+  <%= label_tag 'last_name' %>
+  <%= text_field_tag 'last_name', @user %>
+  <br /> <br />
+
+  <%= label_tag 'Ville' %>
+  <%= text_field_tag 'city', @user %>
+  <br /> <br />
+
+  <%= label_tag 'password' %>
+  <%= text_field_tag 'password', @user %>
+  <br /> <br />
+
+  <%= label_tag 'password comfirmation' %>
+  <%= text_field_tag 'password_comfirmation', @user %>
+  <br /> <br />
+
+  <%= label_tag 'description' %>
+  <%= text_area_tag 'description', @user %>
+  <br /> <br />
+
+  <%= submit_tag 'Create User' %>
+
+<% end %>
