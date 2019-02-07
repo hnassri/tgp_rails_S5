@@ -16,4 +16,13 @@
 
  /*------------------------ NAVBAR ---------------------*/
 
- 
+ td {
+  border-bottom: 1px solid #ddd;
+  padding-right: 20px;
+  padding-top: 10px;
+ }
+
+.team td {
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+}
