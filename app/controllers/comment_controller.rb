@@ -6,12 +6,12 @@ class CommentController < ApplicationController
     @comment = Comment.find(params[:id])
   end
   def new
-    @pos = Comment.new(user_id: session[:user_id])
+    @pos = Comment.new
 
   end
 
   def create
-    @pos = Comment.new(content: params[:content],gossip_id: params[:gossip_id])
+    @pos = Comment.new(content: params[:content],gossip_id: params[:gossip_id],user_id: session[:user_id])
     if @pos.save
       gossip = @pos.gossip_id
       redirect_to gossip_path(gossip)
