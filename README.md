@@ -17,3 +17,4 @@ Première appli en Rails qui reprend le concept d'application de The Gossip Proj
 
 Nassri Hamdi & Maxime Smolis.
 
+https://tgp-mh.herokuapp.com/gossip
