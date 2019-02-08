@@ -23,8 +23,14 @@
 </br>
 <h3 class="text-center">Voici la listes des commentaires:</h3>
 </br>
-<p class="card-title text-center"><%= link_to 'Ajouter un commentaire', new_gossip_comment_path(@gossip_id.id) %></p>
+<%= form_tag("/gossip/#{@gossip_id.id}/comment", method: "post") do %>
 
+    <%= label_tag 'Nouveau commentaire' %>
+    <%= text_area_tag 'content', @pos, class: 'form-control' %>
+    <br />
+    <%= submit_tag "Publier" , class: 'btn btn-primary'%>
+
+<% end %>
 <div class="row justify-content-around">
 <% @gossip_id.comments.all.each do |comment| %>
   <div class="col-sm-3 mb-4">
@@ -43,11 +49,3 @@
   </div>
 </div>
 
-<%= form_tag("/gossip/#{@gossip_id.id}/comment", method: "post") do %>
-
-    <%= label_tag 'Nouveau commentaire' %>
-    <%= text_area_tag 'content', @pos, class: 'form-control' %>
-    <br />
-    <%= submit_tag "Publier" , class: 'btn btn-primary'%>
-
-<% end %>
