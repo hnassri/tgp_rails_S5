@@ -43,7 +43,7 @@
   </div>
 </div>
 
-<%= form_tag("#{@gossip_id.id}/comment", method: "post") do %>
+<%= form_tag("/gossip/#{@gossip_id.id}/comment", method: "post") do %>
 
     <%= label_tag 'Nouveau commentaire' %>
     <%= text_area_tag 'content', @pos, class: 'form-control' %>
